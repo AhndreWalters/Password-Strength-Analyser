@@ -1,0 +1,67 @@
+Core Algorithm: Hashing Algorithm with Collision Resolution
+
+Algorithm hashFunction(password):
+    Input: string password
+    Output: integer hash value (0 to capacity-1)
+    
+    hash ← 0
+    for each character c in password:
+        hash ← (hash × 31 + ASCII(c)) mod capacity
+    end for
+    return hash
+
+Algorithm addPassword(password):
+    Input: string password to add to hash table
+    
+    index ← hashFunction(password)
+    newNode ← new Node(password)
+    newNode.next ← table[index]  // Separate chaining for collision resolution
+    table[index] ← newNode
+
+
+Core Algorithm: Search on Trie (Word Detection)
+
+Algorithm findWordsInPassword(password):
+    Input: string password
+    Output: list of dictionary words found in password
+    
+    foundWords ← empty list
+    
+    for i from 0 to length(password)-1:
+        currentNode ← root
+        currentWord ← empty string
+        
+        for j from i to length(password)-1:
+            charCode ← ASCII(password[j])
+            
+            if currentNode.children[charCode] = null:
+                break
+            
+            currentNode ← currentNode.children[charCode]
+            currentWord ← currentWord + password[j]
+            
+            if currentNode.isEndOfWord AND length(currentWord) ≥ 3:
+                foundWords.append(currentWord)
+        end for
+    end for
+    
+    return foundWords
+
+
+Core Algorithm: Fisher-Yates Shuffle Algorithm
+
+Algorithm shuffleVector(vector):
+    Input: vector of characters
+    Output: uniformly shuffled vector
+    
+    n ← length(vector)
+    for i from n-1 down to 1:
+        j ← random integer where 0 ≤ j ≤ i
+        swap vector[i] and vector[j]
+    end for
+    return vector
+
+
+
+
+    
